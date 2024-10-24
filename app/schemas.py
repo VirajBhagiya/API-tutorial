@@ -1,6 +1,5 @@
 from typing import Optional
-from httpx import post
-from pydantic import BaseModel, EmailStr, Field, conint
+from pydantic import BaseModel, EmailStr, Field, conint, ConfigDict
 from datetime import datetime
 
 
@@ -19,8 +18,9 @@ class UserOut(BaseModel):
     email: EmailStr
     created_at: datetime
     
-    class Config:
+    model_config = ConfigDict(
         from_attributes = True
+    )
     
         
 class Post(PostBase):
@@ -29,8 +29,9 @@ class Post(PostBase):
     owner_id: int
     owner: UserOut
     
-    class Config:
+    model_config = ConfigDict(
         from_attributes = True
+    )
         
 class PostOut(BaseModel):
     Post: Post

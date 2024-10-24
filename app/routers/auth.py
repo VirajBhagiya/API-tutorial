@@ -15,7 +15,7 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db:Session = 
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"User with email {user_credentials.username} does not exist")
     
     if not utils.verify(user_credentials.password, user.password):
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid credentials")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials")
     
     # Create a token
     # return token
